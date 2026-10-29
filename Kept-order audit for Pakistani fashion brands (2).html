@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kept-order audit for Pakistani fashion brands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000000; --surface:#0d0d0d; --line:#2a2a2a; --text:#f4f4f0; --muted:#a8a8a0;
+  --lime:#bcec0f; --on-lime:#0a0a0a; --lime-text:#bcec0f;
+  --display:"Space Grotesk",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 var(--body)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+section{padding:72px 0}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.5rem,7.5vw,4.9rem);font-weight:700}
+h2{font-size:clamp(1.8rem,4.2vw,2.8rem);font-weight:700;max-width:20ch}
+h3{font-size:1.2rem;font-weight:500;letter-spacing:-.01em}
+p{margin:0 0 1em;max-width:62ch}
+.muted{color:var(--muted)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font:700 1.1rem var(--display);text-decoration:none}
+.brand svg{width:34px;height:32px}
+.btn{display:inline-block;background:var(--lime);color:var(--on-lime);font:700 1rem var(--display);padding:14px 24px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
+.btn:hover{filter:brightness(1.07)}
+.btn.small{padding:9px 18px;font-size:.92rem}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+
+.hero{padding:36px 22px 52px;display:grid;gap:26px;grid-template-columns:1fr;align-items:center}
+.hero>*{min-width:0}
+.hero .mark{width:96px;height:auto;justify-self:start;order:-1}
+.hero p.lead{font-size:1.2rem;color:var(--muted)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+@media(max-width:559px){h1{font-size:2.15rem}.hero p.lead{font-size:1.05rem}.cta-row .btn{width:100%;text-align:center}}
+@media(min-width:860px){.hero{grid-template-columns:1.5fr 1fr;padding:64px 22px 80px;gap:40px}.hero .mark{width:100%;order:0;justify-self:center}}
+.mark .pulse{transform-origin:100px 112px;animation:pulse 3.2s ease-in-out 1}
+@keyframes pulse{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.25)}100%{transform:scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.mark .pulse{animation:none}html{scroll-behavior:auto}}
+
+.split{display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:760px){.split.two{grid-template-columns:1fr 1fr}.split.three{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
+.card p{margin:0;color:var(--muted)}
+.leak{border-left:4px solid var(--lime)}
+.band{background:var(--surface);border-block:1px solid var(--line)}
+
+.table{width:100%;border-collapse:collapse;margin-top:10px}
+.table th,.table td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.table th{font:500 .95rem var(--display);color:var(--muted)}
+.scroll{overflow-x:auto}
+.say{font-style:italic;color:var(--lime-text);font-size:1.15rem}
+
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:18px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:14px}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--lime);color:var(--on-lime);font:700 1.1rem var(--display)}
+.steps h3{margin:0 0 .2em}.steps p{margin:0;color:var(--muted)}
+
+.audit-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.audit-list li{padding-left:30px;position:relative}
+.audit-list li::before{content:"";position:absolute;left:0;top:.45em;width:14px;height:14px;background:var(--lime);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+
+form{display:grid;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;max-width:640px}
+label{display:grid;gap:6px;font:500 .95rem var(--display)}
+input,select,textarea{font:400 1rem var(--body);background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:13px 14px;width:100%}
+.hint{font-size:.88rem;color:var(--muted);margin:0}
+#msg{min-height:1.4em;color:var(--lime-text);font-weight:500;margin:0}
+.err{color:#ff6b5e!important}
+
+.plans{display:grid;gap:18px;grid-template-columns:1fr;margin-top:28px}
+@media(min-width:900px){.plans{grid-template-columns:repeat(3,1fr)}}
+.plan{display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:28px}
+.plan h3{margin:0 0 .3em;color:var(--muted)}
+.price{font:700 clamp(2.2rem,5vw,2.9rem)/1 var(--display);color:var(--lime-text);letter-spacing:-.03em}
+.unit{color:var(--muted);margin:.4em 0 1.2em}
+.plan .audit-list{margin:0 0 1.2em;padding-top:1.2em;border-top:1px solid var(--line)}
+.plan .for{color:var(--muted);font-size:.95rem;margin-top:auto}
+.plan .btn{text-align:center;margin-top:18px}
+.note{margin-top:22px;color:var(--muted)}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font:500 1.12rem var(--display)}
+details p{margin:.8em 0 0;color:var(--muted)}
+footer{padding:40px 0 56px;color:var(--muted);font-size:.92rem;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Brand home">
+      <svg viewBox="0 0 200 190" aria-hidden="true" fill="none" stroke="var(--lime)" stroke-width="22" stroke-linecap="round">
+        <path d="M74.7 76.2A33 33 0 1 1 125.3 76.2"/>
+        <path d="M82.5 147.6A33 33 0 1 1 59.2 102.8"/>
+        <path d="M117.5 147.6A33 33 0 1 0 140.8 102.8"/>
+        <path d="M100 90Q100 112 122 112Q100 112 100 134Q100 112 78 112Q100 112 100 90Z" fill="var(--lime)" stroke="none"/>
+      </svg>
+      <span id="brandName">Your Brand Name</span>
+    </a>
+    <a class="btn small" href="#audit">Book the audit</a>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <h1>Your ROAS looks fine. Is the cash showing up?</h1>
+    <p class="lead">I set up and manage Meta and Google ads and fix Pixel and Conversions API tracking for Pakistani fashion brands. My audit matches your ad spend to orders that were delivered and kept, so you see profit per order, not just a ROAS number.</p>
+    <div class="cta-row">
+      <a class="btn" href="#audit">Request your kept-order audit</a>
+      <a class="btn ghost" href="#leaks">See what I check</a>
+    </div>
+    <p class="muted" style="margin-top:18px;font-size:.95rem">No ROAS promises. I promise what I will measure, and I report it plainly.</p>
+  </div>
+  <svg class="mark" viewBox="0 0 200 190" role="img" aria-label="Three arcs with a four-point star between them" fill="none" stroke="var(--lime)" stroke-width="22" stroke-linecap="round">
+    <path d="M74.7 76.2A33 33 0 1 1 125.3 76.2"/>
+    <path d="M82.5 147.6A33 33 0 1 1 59.2 102.8"/>
+    <path d="M117.5 147.6A33 33 0 1 0 140.8 102.8"/>
+    <path class="pulse" d="M100 90Q100 112 122 112Q100 112 100 134Q100 112 78 112Q100 112 100 90Z" fill="var(--lime)" stroke="none"/>
+  </svg>
+</div>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Sale mein orders bohat aate hain. Cash kahan hai?</h2>
+    <p>Eid, Azadi sale, winter weddings, 11.11 and 12.12 bring order spikes. They also bring exchanges, returns and thin margins. Meta only shows the order at checkout. It does not show what happened after the rider left.</p>
+    <div class="scroll">
+    <table class="table">
+      <tr><th>What your Ads Manager says</th><th>What actually happened</th></tr>
+      <tr><td>100 purchases</td><td>Some parcels never delivered (RTO), some came back for size or fit, some orders never reached the Pixel at all</td></tr>
+      <tr><td>Good ROAS in sale week</td><td>Discounted prices, returns and delivery costs can leave very little margin per order</td></tr>
+      <tr><td>Ads are working</td><td>Some ads may still be pushing sizes or designs that sold out</td></tr>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section id="leaks">
+  <div class="wrap">
+    <h2>Four leaks I look for in a fashion store</h2>
+    <div class="split two" style="margin-top:28px">
+      <div class="card leak"><h3>Tracking gaps</h3><p>Pixel and CAPI setup, duplicate or missing purchase events, and orders closed in WhatsApp or Instagram DMs that Meta never sees.</p></div>
+      <div class="card leak"><h3>RTO and exchanges, counted separately</h3><p>Undelivered parcels and size or fit exchanges are different problems. I split them by collection, size, city and courier.</p></div>
+      <div class="card leak"><h3>Sale-period margin</h3><p>Contribution margin per campaign after discounts and returns, so a sale that “worked” does not quietly lose money.</p></div>
+      <div class="card leak"><h3>Spend on sold-out stock</h3><p>Ads still running on sizes or designs you no longer have. Catalog ads with inventory sync help stop this.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap" style="display:grid;gap:36px">
+    <div>
+      <h2>What you get in the audit</h2>
+      <p><strong class="price" style="font-size:1.8rem">Rs2,000</strong> <span class="muted">one-time, one report and one call</span></p>
+      <ul class="audit-list">
+        <li>A tracking check: Pixel, Conversions API, purchase events, DM-order leakage</li>
+        <li>A reconciliation of Meta purchases, Shopify orders, delivered orders and kept orders</li>
+        <li>RTO rate and exchange rate by collection, size, city and courier</li>
+        <li>Contribution margin for your last sale period</li>
+        <li>A Q4 plan covering wedding season, 11.11 and 12.12: budget, tests and a margin check for each sale</li>
+      </ul>
+      <p class="muted" style="margin-top:18px">I will tell you in the first call what data I need, usually Shopify and courier exports and read-only access to Ads Manager.</p>
+    </div>
+    <div>
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><div><h3>Send your details</h3><p>Fill the short form below. It opens a WhatsApp message to me.</p></div></li>
+        <li><div><h3>Share your data</h3><p>Order and courier exports plus view-only ad account access. Nothing changes in your account.</p></div></li>
+        <li><div><h3>Get the report and a call</h3><p>I walk you through the numbers and what to fix first, then you decide whether to work together.</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Built for founder-led fashion brands</h2>
+    <div class="split three" style="margin-top:28px">
+      <div class="card"><h3>Good fit</h3><p>Shopify store, Instagram-first audience, regular collection drops, ads running for weeks including non-sale periods.</p></div>
+      <div class="card"><h3>Your goals</h3><p>Drops that sell through without heavy discounting, fewer size exchanges, and ad spend that follows your stock.</p></div>
+      <div class="card"><h3>Not a fit</h3><p>If you want a guaranteed ROAS multiple, I am not the right person. Nobody can honestly promise one.</p></div>
+    </div>
+    <p class="say" style="margin-top:28px">“ROAS acha hai par cash nahi aa raha.” If that sounds familiar, start here.</p>
+  </div>
+</section>
+
+<section id="pricing" class="band">
+  <div class="wrap">
+    <h2>Simple pricing, three ways to start</h2>
+    <p class="muted">Pick the one that matches where your brand is today. Not sure which? Message me and I will tell you.</p>
+    <div class="plans">
+      <article class="plan">
+        <h3>Tier 1: Getting started</h3>
+        <div class="price">Rs8,000</div>
+        <div class="unit">one-time setup fee</div>
+        <ul class="audit-list">
+          <li>Meta ads account setup</li>
+          <li>Google ads account setup</li>
+          <li>Pixel and CAPI tracking setup</li>
+        </ul>
+        <p class="for">Best for brands starting from zero, with no ad account or tracking set up.</p>
+        <a class="btn ghost" href="#audit">Ask about Tier 1</a>
+      </article>
+      <article class="plan">
+        <h3>Tier 2: Ongoing management</h3>
+        <div class="price">Rs17,000</div>
+        <div class="unit">per month</div>
+        <ul class="audit-list">
+          <li>Everything in Tier 1</li>
+          <li>Ongoing Meta and Google ads management</li>
+          <li>Weekly reporting with real numbers, in plain language</li>
+        </ul>
+        <p class="for">Best for brands already running ads that want someone watching the account every week.</p>
+        <a class="btn" href="#audit">Ask about Tier 2</a>
+      </article>
+      <article class="plan">
+        <h3>Tier 3: Priority</h3>
+        <div class="price">Rs25,000</div>
+        <div class="unit">per month</div>
+        <ul class="audit-list">
+          <li>Everything in Tier 2</li>
+          <li>Priority support with replies within 2 hours</li>
+          <li>Monthly courier and RTO performance breakdown, by courier</li>
+          <li>Ad creative testing: 2–3 variations tested every month, winner reported</li>
+        </ul>
+        <p class="for">Best for brands where slow replies and unclear RTO are quietly costing money.</p>
+        <a class="btn ghost" href="#audit">Ask about Tier 3</a>
+      </article>
+    </div>
+    <p class="note">Ad spend is separate. You pay Meta and Google directly, not me.</p>
+  </div>
+</section>
+
+<section id="audit">
+  <div class="wrap">
+    <h2>Request your kept-order audit</h2>
+    <p class="muted">Tell me about your store. I reply on WhatsApp, usually within one working day. The kept-order audit is Rs2,000, and I confirm payment details before you share any data.</p>
+    <form id="leadForm" novalidate>
+      <label>Your name<input name="name" autocomplete="name" required></label>
+      <label>Brand name<input name="brand" autocomplete="organization" required></label>
+      <label>Website or Instagram link<input name="site" placeholder="yourbrand.com or instagram.com/yourbrand" required></label>
+      <label>Monthly Meta ad spend
+        <select name="spend">
+          <option value="Under Rs100k">Under Rs100k</option>
+          <option value="Rs100k–300k">Rs100k–300k</option>
+          <option value="Rs300k–1M">Rs300k–1M</option>
+          <option value="Over Rs1M">Over Rs1M</option>
+          <option value="Not running ads yet">Not running ads yet</option>
+        </select>
+      </label>
+      <label>Biggest problem right now
+        <select name="problem">
+          <option>Too many returns or exchanges</option>
+          <option>ROAS is good but profit is low</option>
+          <option>Not sure my tracking is correct</option>
+          <option>Ads keep running on sold-out designs</option>
+          <option>Planning Q4 and sale season</option>
+        </select>
+      </label>
+      <label>Which plan are you interested in?
+        <select name="plan">
+          <option>Not sure yet</option>
+          <option>Kept-order audit (Rs2,000)</option>
+          <option>Tier 1: Getting started (Rs8,000 setup)</option>
+          <option>Tier 2: Ongoing management (Rs17,000/month)</option>
+          <option>Tier 3: Priority (Rs25,000/month)</option>
+        </select>
+      </label>
+      <label>Your WhatsApp number<input name="phone" type="tel" autocomplete="tel" placeholder="03XX XXXXXXX" required></label>
+      <button class="btn" type="submit">Send on WhatsApp</button>
+      <p id="msg" role="status"></p>
+      <p class="hint">Submitting opens WhatsApp with your answers filled in. You press send.</p>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Questions owners ask</h2>
+    <details><summary>Do you guarantee ROAS?</summary><p>No. ROAS claims are easy to make and hard to verify. I commit to what I measure and report: tracked purchases, kept orders and margin.</p></details>
+    <details><summary>Will you reduce my RTO?</summary><p>Cheap tools already handle COD confirmation calls and risk scores. I focus on connecting ad spend to kept orders, so you can see which campaigns bring buyers who keep their order.</p></details>
+    <details><summary>What access do you need?</summary><p>View-only access to your ad account and your Shopify and courier exports. I do not change anything during the audit.</p></details>
+    <details><summary>Do you also test ad creatives?</summary><p>Yes, on Tier 3. I test 2–3 creative variations every month and report the winner.</p></details>
+    <details><summary>What does the audit cost?</summary><p>The kept-order audit is a one-time Rs2,000. You get the report and a call to walk through it, and then you decide whether to work together.</p></details>
+    <details><summary>Is ad spend included in the price?</summary><p>No. Ad spend is separate. You pay Meta and Google directly, not me.</p></details>
+    <details><summary>Which plan should I pick?</summary><p>Starting from zero with no ad account or tracking: Tier 1. Already running ads and want weekly eyes on them: Tier 2. Slow replies and unclear RTO costing you money: Tier 3.</p></details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span id="footName">Your Brand Name</span> · Meta and Google ads, Pixel and CAPI for fashion brands in Pakistan. Instagram: <a href="https://instagram.com/huzaifa.metaads" rel="noopener">@huzaifa.metaads</a>
+  </div>
+</footer>
+
+<script>
+// EDIT THESE TWO LINES before sharing the page
+const WHATSAPP_NUMBER = "923072061061"; // country code + number, digits only
+const BRAND_NAME = "huzaifa.metaads";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzgTWGUyIKD4hWfhFuhlJBvWr_T5pJtDRyaUB2udoNid53DBvUDJ9aLgxaZufmj9ieS/exec";
+document.getElementById("brandName").textContent = BRAND_NAME;
+document.getElementById("footName").textContent = BRAND_NAME;
+
+document.getElementById("leadForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var f = e.target, msg = document.getElementById("msg");
+  var d = {};
+  ["name","brand","site","spend","problem","plan","phone"].forEach(function(k){ d[k] = (f.elements[k].value || "").trim(); });
+  if(!d.name || !d.brand || !d.site || !d.phone){
+    msg.className = "err";
+    msg.textContent = "Please fill in your name, brand, website or Instagram link, and WhatsApp number.";
+    return;
+  }
+  var text = "Hi, I would like the kept-order audit.\n" +
+    "Name: " + d.name + "\nBrand: " + d.brand + "\nSite: " + d.site +
+    "\nMeta spend: " + d.spend + "\nBiggest problem: " + d.problem + "\nPlan: " + d.plan + "\nMy WhatsApp: " + d.phone;
+  msg.className = "";
+  msg.textContent = "Opening WhatsApp. Press send to submit your request.";
+  window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+});
+</script>
+</body>
+</html>
