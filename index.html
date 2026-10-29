@@ -9,14 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#000000; --surface:#0d0d0d; --line:#2a2a2a; --text:#f4f4f0; --muted:#a8a8a0;
+  --bg:#000; --surface:#0d0d0d; --line:#2a2a2a; --text:#f4f4f0; --muted:#a8a8a0;
   --lime:#bcec0f; --on-lime:#0a0a0a; --lime-text:#bcec0f;
   --display:"Space Grotesk",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
-  color-scheme:dark;
-  box-sizing:border-box;
+  color-scheme:dark; box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
-
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 var(--body)}
@@ -30,19 +28,15 @@ p{margin:0 0 1em;max-width:62ch}
 .muted{color:var(--muted)}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--lime);outline-offset:3px}
-
 header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{display:flex;align-items:center;gap:10px;font:700 1.1rem var(--display);text-decoration:none}
+.brand{display:flex;align-items:center;gap:10px;font:700 1.1rem var(--display);text-decoration:none;animation:brandIn .7s ease-out both}
 .brand svg{width:34px;height:32px}
-.brand{animation:brandIn .7s ease-out both}
 @keyframes brandIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.brand{animation:none}}
 .btn{display:inline-block;background:var(--lime);color:var(--on-lime);font:700 1rem var(--display);padding:14px 24px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
 .btn:hover{filter:brightness(1.07)}
 .btn.small{padding:9px 18px;font-size:.92rem}
 .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-
 .hero{padding:36px 22px 52px;display:grid;gap:26px;grid-template-columns:1fr;align-items:center}
 .hero>*{min-width:0}
 .hero .mark{width:96px;height:auto;justify-self:start;order:-1}
@@ -52,37 +46,33 @@ header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px s
 @media(min-width:860px){.hero{grid-template-columns:1.5fr 1fr;padding:64px 22px 80px;gap:40px}.hero .mark{width:100%;order:0;justify-self:center}}
 .mark .pulse{transform-origin:100px 112px;animation:pulse 3.2s ease-in-out 1}
 @keyframes pulse{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.25)}100%{transform:scale(1);opacity:1}}
-@media(prefers-reduced-motion:reduce){.mark .pulse{animation:none}html{scroll-behavior:auto}}
-
+@media(prefers-reduced-motion:reduce){.brand,.mark .pulse{animation:none}html{scroll-behavior:auto}}
 .split{display:grid;gap:18px;grid-template-columns:1fr}
 @media(min-width:760px){.split.two{grid-template-columns:1fr 1fr}.split.three{grid-template-columns:repeat(3,1fr)}}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
 .card p{margin:0;color:var(--muted)}
 .leak{border-left:4px solid var(--lime)}
 .band{background:var(--surface);border-block:1px solid var(--line)}
-
 .table{width:100%;border-collapse:collapse;margin-top:10px}
 .table th,.table td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 .table th{font:500 .95rem var(--display);color:var(--muted)}
 .scroll{overflow-x:auto}
 .say{font-style:italic;color:var(--lime-text);font-size:1.15rem}
-
 .steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:18px}
 .steps li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:14px}
 .steps li::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--lime);color:var(--on-lime);font:700 1.1rem var(--display)}
 .steps h3{margin:0 0 .2em}.steps p{margin:0;color:var(--muted)}
-
 .audit-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
 .audit-list li{padding-left:30px;position:relative}
 .audit-list li::before{content:"";position:absolute;left:0;top:.45em;width:14px;height:14px;background:var(--lime);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
-
+.tag{display:inline-block;border:1px solid var(--lime);color:var(--lime-text);border-radius:999px;padding:4px 14px;font:500 .9rem var(--display);margin:0 0 14px}
 form{display:grid;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;max-width:640px}
 label{display:grid;gap:6px;font:500 .95rem var(--display)}
 input,select,textarea{font:400 1rem var(--body);background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:13px 14px;width:100%}
 .hint{font-size:.88rem;color:var(--muted);margin:0}
 #msg{min-height:1.4em;color:var(--lime-text);font-weight:500;margin:0}
 .err{color:#ff6b5e!important}
-
+.direct{margin-top:22px;max-width:640px}
 .plans{display:grid;gap:18px;grid-template-columns:1fr;margin-top:28px}
 @media(min-width:900px){.plans{grid-template-columns:repeat(3,1fr)}}
 .plan{display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:28px}
@@ -137,7 +127,7 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
 <div class="wrap hero">
   <div>
     <h1>Your ROAS looks fine. Is the cash showing up?</h1>
-    <p class="lead">I set up and manage Meta and Google ads and fix Pixel and Conversions API tracking for Pakistani fashion brands. My audit matches your ad spend to orders that were delivered and kept, so you see profit per order, not just a ROAS number.</p>
+    <p class="lead">I fix Meta and Google ad tracking and match your ad spend to the orders customers actually kept, so Pakistani fashion brands see profit per order, not just a ROAS number.</p>
     <div class="cta-row">
       <a class="btn" href="#audit">Request your kept-order audit</a>
       <a class="btn ghost" href="#leaks">See what I check</a>
@@ -151,6 +141,25 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
     <path class="pulse" d="M100 90Q100 112 122 112Q100 112 100 134Q100 112 78 112Q100 112 100 90Z" fill="var(--lime)" stroke="none"/>
   </svg>
 </div>
+
+<!--
+CASE STUDY: delete the comment markers around this block once you have real N.S Fashion numbers, then fill in every [bracket].
+<section id="proof">
+  <div class="wrap">
+    <h2>What this looks like in practice</h2>
+    <div class="card" style="margin-top:24px">
+      <p class="tag">N.S Fashion · [city] · [short descriptor]</p>
+      <h3>The problem</h3><p>[One line.]</p>
+      <h3 style="margin-top:1em">What I found</h3>
+      <ul class="audit-list"><li>[Finding 1 with a number]</li><li>[Finding 2 with a number]</li></ul>
+      <h3 style="margin-top:1em">What changed</h3>
+      <ul class="audit-list"><li>[Action 1 and measured result]</li><li>[Action 2 and measured result]</li></ul>
+      <h3 style="margin-top:1em">Result</h3><p>[One number the owner cares about.]</p>
+      <p class="say">“[One-line quote from the owner]” [Name], N.S Fashion</p>
+    </div>
+  </div>
+</section>
+-->
 
 <section class="band">
   <div class="wrap">
@@ -183,7 +192,7 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
   <div class="wrap" style="display:grid;gap:36px">
     <div>
       <h2>What you get in the audit</h2>
-      <p><strong class="price" style="font-size:1.8rem">Rs2,000</strong> <span class="muted">one-time, one report and one call</span></p>
+      <p><strong class="price" style="font-size:1.8rem">Rs2,000</strong> <span class="muted">one-time, one report and one call. Credited toward Tier 2 if we work together.</span></p>
       <ul class="audit-list">
         <li>A tracking check: Pixel, Conversions API, purchase events, DM-order leakage</li>
         <li>A reconciliation of Meta purchases, Shopify orders, delivered orders and kept orders</li>
@@ -191,7 +200,9 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
         <li>Contribution margin for your last sale period</li>
         <li>A Q4 plan covering wedding season, 11.11 and 12.12: budget, tests and a margin check for each sale</li>
       </ul>
-      <p class="muted" style="margin-top:18px">I will tell you in the first call what data I need, usually Shopify and courier exports and read-only access to Ads Manager.</p>
+      <p style="margin-top:18px"><strong>Turnaround:</strong> report within 3 working days of receiving your data.</p>
+      <p class="muted">Sale starting in under 2 weeks? Message me first and I will prioritise the sale-week checks.</p>
+      <p class="muted">I will tell you in the first call what data I need, usually Shopify and courier exports and read-only access to Ads Manager.</p>
     </div>
     <div>
       <h2>How it works</h2>
@@ -216,7 +227,16 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
   </div>
 </section>
 
-<section id="pricing" class="band">
+<section class="band" id="about">
+  <div class="wrap">
+    <h2>Who you will be working with</h2>
+    <!-- Add your photo here: <img src="your-photo.jpg" alt="Huzaifa Vayani" width="120" height="120" style="border-radius:50%;object-fit:cover"> -->
+    <p>I am Huzaifa. I run Meta and Google ads and fix tracking for Pakistani fashion brands. I focus on kept orders because a purchase in Ads Manager is not the same as cash in your account.</p>
+    <p class="muted">You can see how I work on Instagram: <a href="https://instagram.com/huzaifa.metaads" rel="noopener">@huzaifa.metaads</a></p>
+  </div>
+</section>
+
+<section id="pricing">
   <div class="wrap">
     <h2>Simple pricing, three ways to start</h2>
     <p class="muted">Pick the one that matches where your brand is today. Not sure which? Message me and I will tell you.</p>
@@ -238,9 +258,10 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
         <div class="price">Rs17,000</div>
         <div class="unit">per month</div>
         <ul class="audit-list">
-          <li>Everything in Tier 1</li>
+          <li>Everything in Tier 1, setup included with no separate Rs8,000 fee</li>
           <li>Ongoing Meta and Google ads management</li>
           <li>Weekly reporting with real numbers, in plain language</li>
+          <li>Results judged on weekly reports, not single days</li>
         </ul>
         <p class="for">Best for brands already running ads that want someone watching the account every week.</p>
         <a class="btn" href="#audit">Ask about Tier 2</a>
@@ -251,9 +272,10 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
         <div class="unit">per month</div>
         <ul class="audit-list">
           <li>Everything in Tier 2</li>
+          <li><strong>Monthly courier and RTO performance breakdown, by courier</strong></li>
           <li>Priority support with replies within 2 hours</li>
-          <li>Monthly courier and RTO performance breakdown, by courier</li>
           <li>Ad creative testing: 2–3 variations tested every month, winner reported</li>
+          <li>Results judged on weekly reports, not single days</li>
         </ul>
         <p class="for">Best for brands where slow replies and unclear RTO are quietly costing money.</p>
         <a class="btn ghost" href="#audit">Ask about Tier 3</a>
@@ -263,10 +285,10 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
   </div>
 </section>
 
-<section id="audit">
+<section id="audit" class="band">
   <div class="wrap">
     <h2>Request your kept-order audit</h2>
-    <p class="muted">Tell me about your store. I reply on WhatsApp, usually within one working day. The kept-order audit is Rs2,000, and I confirm payment details before you share any data.</p>
+    <p class="muted">Tell me about your store. I reply on WhatsApp, usually within one working day. The kept-order audit is Rs2,000 (credited toward Tier 2), and I confirm payment details before you share any data.</p>
     <form id="leadForm" novalidate>
       <label>Your name<input name="name" autocomplete="name" required></label>
       <label>Brand name<input name="brand" autocomplete="organization" required></label>
@@ -292,7 +314,7 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
       <label>Which plan are you interested in?
         <select name="plan">
           <option>Not sure yet</option>
-          <option>Kept-order audit (Rs2,000)</option>
+          <option>Kept-order audit (Rs2,000, credited toward Tier 2)</option>
           <option>Tier 1: Getting started (Rs8,000 setup)</option>
           <option>Tier 2: Ongoing management (Rs17,000/month)</option>
           <option>Tier 3: Priority (Rs25,000/month)</option>
@@ -303,6 +325,7 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
       <p id="msg" role="status"></p>
       <p class="hint">Submitting opens WhatsApp with your answers filled in. You press send.</p>
     </form>
+    <p class="direct muted">Prefer to just chat? <a class="btn ghost small" id="directWa" href="#" target="_blank" rel="noopener">Message me on WhatsApp</a></p>
   </div>
 </section>
 
@@ -312,8 +335,9 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
     <details><summary>Do you guarantee ROAS?</summary><p>No. ROAS claims are easy to make and hard to verify. I commit to what I measure and report: tracked purchases, kept orders and margin.</p></details>
     <details><summary>Will you reduce my RTO?</summary><p>Cheap tools already handle COD confirmation calls and risk scores. I focus on connecting ad spend to kept orders, so you can see which campaigns bring buyers who keep their order.</p></details>
     <details><summary>What access do you need?</summary><p>View-only access to your ad account and your Shopify and courier exports. I do not change anything during the audit.</p></details>
+    <details><summary>How long does the audit take?</summary><p>The report is ready within 3 working days of receiving your data. If a sale is coming up soon, message me first and I will prioritise the sale-week checks.</p></details>
     <details><summary>Do you also test ad creatives?</summary><p>Yes, on Tier 3. I test 2–3 creative variations every month and report the winner.</p></details>
-    <details><summary>What does the audit cost?</summary><p>The kept-order audit is a one-time Rs2,000. You get the report and a call to walk through it, and then you decide whether to work together.</p></details>
+    <details><summary>What does the audit cost?</summary><p>The kept-order audit is a one-time Rs2,000. You get the report and a call to walk through it. If you then start Tier 2, the Rs2,000 is credited toward it.</p></details>
     <details><summary>Is ad spend included in the price?</summary><p>No. Ad spend is separate. You pay Meta and Google directly, not me.</p></details>
     <details><summary>Which plan should I pick?</summary><p>Starting from zero with no ad account or tracking: Tier 1. Already running ads and want weekly eyes on them: Tier 2. Slow replies and unclear RTO costing you money: Tier 3.</p></details>
   </div>
@@ -332,6 +356,7 @@ const BRAND_NAME = "Huzaifa Vayani";
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbzgTWGUyIKD4hWfhFuhlJBvWr_T5pJtDRyaUB2udoNid53DBvUDJ9aLgxaZufmj9ieS/exec";
 document.getElementById("brandName").textContent = BRAND_NAME;
 document.getElementById("footName").textContent = BRAND_NAME;
+document.getElementById("directWa").href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent("Hi, I saw your website and have a question.");
 
 document.getElementById("leadForm").addEventListener("submit", function(e){
   e.preventDefault();
