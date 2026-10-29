@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kept-order audit for Pakistani fashion brands</title>
+<title>Huzaifa Vayani</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -5 200 200'%3E%3Crect x='0' y='-5' width='200' height='200' rx='36' fill='%23000'/%3E%3Cg fill='none' stroke='%23bcec0f' stroke-width='22' stroke-linecap='round'%3E%3Cpath d='M74.7 76.2A33 33 0 1 1 125.3 76.2'/%3E%3Cpath d='M82.5 147.6A33 33 0 1 1 59.2 102.8'/%3E%3Cpath d='M117.5 147.6A33 33 0 1 0 140.8 102.8'/%3E%3C/g%3E%3Cpath d='M100 90Q100 112 122 112Q100 112 100 134Q100 112 78 112Q100 112 100 90Z' fill='%23bcec0f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -34,6 +35,9 @@ header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px s
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
 .brand{display:flex;align-items:center;gap:10px;font:700 1.1rem var(--display);text-decoration:none}
 .brand svg{width:34px;height:32px}
+.brand{animation:brandIn .7s ease-out both}
+@keyframes brandIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.brand{animation:none}}
 .btn{display:inline-block;background:var(--lime);color:var(--on-lime);font:700 1rem var(--display);padding:14px 24px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
 .btn:hover{filter:brightness(1.07)}
 .btn.small{padding:9px 18px;font-size:.92rem}
@@ -123,7 +127,7 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
         <path d="M117.5 147.6A33 33 0 1 0 140.8 102.8"/>
         <path d="M100 90Q100 112 122 112Q100 112 100 134Q100 112 78 112Q100 112 100 90Z" fill="var(--lime)" stroke="none"/>
       </svg>
-      <span id="brandName">Your Brand Name</span>
+      <span id="brandName">Huzaifa Vayani</span>
     </a>
     <a class="btn small" href="#audit">Book the audit</a>
   </div>
@@ -318,14 +322,13 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
 
 <footer>
   <div class="wrap">
-    <span id="footName">Your Brand Name</span> · Meta and Google ads, Pixel and CAPI for fashion brands in Pakistan. Instagram: <a href="https://instagram.com/huzaifa.metaads" rel="noopener">@huzaifa.metaads</a>
+    <span id="footName">Huzaifa Vayani</span> · Meta and Google ads, Pixel and CAPI for fashion brands in Pakistan. Instagram: <a href="https://instagram.com/huzaifa.metaads" rel="noopener">@huzaifa.metaads</a>
   </div>
 </footer>
 
 <script>
-// EDIT THESE TWO LINES before sharing the page
 const WHATSAPP_NUMBER = "923072061061"; // country code + number, digits only
-const BRAND_NAME = "huzaifa.metaads";
+const BRAND_NAME = "Huzaifa Vayani";
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbzgTWGUyIKD4hWfhFuhlJBvWr_T5pJtDRyaUB2udoNid53DBvUDJ9aLgxaZufmj9ieS/exec";
 document.getElementById("brandName").textContent = BRAND_NAME;
 document.getElementById("footName").textContent = BRAND_NAME;
