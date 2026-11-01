@@ -30,3 +30,38 @@
   },{threshold:.5});
   els.forEach(function(el){io.observe(el)});
 })();
+
+// Enquiry form: fires a standard Pixel "Lead" event, then opens WhatsApp with the answers pre-filled.
+// No personal details are sent to the Pixel or stored by this site.
+(function(){
+  var form=document.getElementById('enquiry');
+  if(!form)return;
+  var NUMBER='923072061061';
+  function track(name,params){try{if(window.fbq)fbq('track',name,params||{});}catch(e){}}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=form.elements,bad=false;
+    ['name','biz','type','where','budget'].forEach(function(k){
+      var ok=f[k].value.trim()!=='';
+      f[k].setAttribute('aria-invalid',ok?'false':'true');
+      if(!ok)bad=true;
+    });
+    var err=document.getElementById('f-error');
+    err.hidden=!bad;
+    if(bad){form.querySelector('[aria-invalid="true"]').focus();return;}
+    var text='Hi Huzaifa, I am '+f.name.value.trim()+' from '+f.biz.value.trim()+'.\n'+
+      'I sell: '+f.type.value+'\n'+
+      'Customers buy: '+f.where.value+'\n'+
+      'Monthly ad budget: '+f.budget.value+
+      (f.msg.value.trim()?'\n'+f.msg.value.trim():'');
+    var url='https://wa.me/'+NUMBER+'?text='+encodeURIComponent(text);
+    var link=document.getElementById('f-link');
+    link.href=url;
+    document.getElementById('f-fallback').hidden=false;
+    track('Lead',{content_name:'Enquiry form'});
+    setTimeout(function(){window.location.href=url;},400);
+  });
+  document.querySelectorAll('[data-track="contact"]').forEach(function(a){
+    a.addEventListener('click',function(){track('Contact');});
+  });
+})();

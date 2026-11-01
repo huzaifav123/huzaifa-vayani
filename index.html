@@ -15,8 +15,6 @@
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="css/style.css">
-<!-- Meta Pixel base code. Add further events (e.g. fbq('track','Contact')) below PageView only after you have set them up and tested them in Events Manager. -->
-<script>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -57,7 +55,7 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
     <h1>More than clicks. Marketing you can measure.</h1>
     <p class="lead">From WhatsApp enquiries to website purchases, I help fashion and e-commerce businesses make smarter advertising decisions through structured testing, campaign optimisation, and honest reporting.</p>
     <div class="cta">
-      <a class="btn" href="https://wa.me/923072061061" target="_blank" rel="noopener">Discuss Your Campaign</a>
+      <a class="btn" href="#contact">Discuss Your Campaign</a>
       <a class="btn ghost" href="#work">View My Work</a>
     </div>
     <dl class="hero-stats">
@@ -226,9 +224,30 @@ src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView&noscript=1"
 <section id="contact" class="contact">
   <div class="wrap">
     <h2>Let's talk about your campaign</h2>
-    <p class="lead">Message me on WhatsApp with your business, what you sell and what you want from your ads.</p>
+    <p class="lead">Tell me a little about your business. The form opens WhatsApp with your answers already written, so you only press send.</p>
+    <form id="enquiry" class="form" novalidate>
+      <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="f-biz">Business or brand name</label><input id="f-biz" name="biz" type="text" autocomplete="organization" required></div>
+      <div class="field"><label for="f-type">What do you sell?</label>
+        <select id="f-type" name="type" required>
+          <option value="">Choose one</option><option>Clothing, abaya or apparel</option><option>Beauty</option><option>Accessories</option><option>Other e-commerce products</option>
+        </select></div>
+      <div class="field"><label for="f-where">Where do customers buy?</label>
+        <select id="f-where" name="where" required>
+          <option value="">Choose one</option><option>WhatsApp or Instagram DMs</option><option>Shopify website</option><option>WooCommerce website</option><option>Another website platform</option><option>Not selling online yet</option>
+        </select></div>
+      <div class="field"><label for="f-budget">Monthly ad budget</label>
+        <select id="f-budget" name="budget" required>
+          <option value="">Choose one</option><option>Under Rs 30,000</option><option>Rs 30,000 to 75,000</option><option>Rs 75,000 to 150,000</option><option>Over Rs 150,000</option><option>Not sure yet</option>
+        </select></div>
+      <div class="field wide"><label for="f-msg">Anything else? (optional)</label><textarea id="f-msg" name="msg" rows="3"></textarea></div>
+      <p class="form-error" id="f-error" role="alert" hidden>Please fill in the required fields.</p>
+      <button class="btn" type="submit">Send on WhatsApp</button>
+      <p class="privacy">Your answers are not stored on this site. They go into a WhatsApp message that you send yourself.</p>
+      <p class="fallback" id="f-fallback" hidden>WhatsApp did not open? <a id="f-link" href="#" target="_blank" rel="noopener">Tap here to continue</a>.</p>
+    </form>
     <div class="cta">
-      <a class="btn" href="https://wa.me/923072061061" target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn ghost" data-track="contact" href="https://wa.me/923072061061" target="_blank" rel="noopener">Message on WhatsApp</a>
       <a class="btn ghost" href="https://instagram.com/huzaifa.metaads" target="_blank" rel="noopener">@huzaifa.metaads on Instagram</a>
     </div>
   </div>
