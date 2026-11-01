@@ -2,379 +2,226 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Huzaifa Vayani</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -5 200 200'%3E%3Crect x='0' y='-5' width='200' height='200' rx='36' fill='%23000'/%3E%3Cg fill='none' stroke='%23bcec0f' stroke-width='22' stroke-linecap='round'%3E%3Cpath d='M74.7 76.2A33 33 0 1 1 125.3 76.2'/%3E%3Cpath d='M82.5 147.6A33 33 0 1 1 59.2 102.8'/%3E%3Cpath d='M117.5 147.6A33 33 0 1 0 140.8 102.8'/%3E%3C/g%3E%3Cpath d='M100 90Q100 112 122 112Q100 112 100 134Q100 112 78 112Q100 112 100 90Z' fill='%23bcec0f'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#000; --surface:#0d0d0d; --line:#2a2a2a; --text:#f4f4f0; --muted:#a8a8a0;
-  --lime:#bcec0f; --on-lime:#0a0a0a; --lime-text:#bcec0f;
-  --display:"Space Grotesk",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
-  color-scheme:dark; box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-}
-html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 var(--body)}
-.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
-section{padding:72px 0}
-h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0 0 .5em;letter-spacing:-.02em}
-h1{font-size:clamp(2.5rem,7.5vw,4.9rem);font-weight:700}
-h2{font-size:clamp(1.8rem,4.2vw,2.8rem);font-weight:700;max-width:20ch}
-h3{font-size:1.2rem;font-weight:500;letter-spacing:-.01em}
-p{margin:0 0 1em;max-width:62ch}
-.muted{color:var(--muted)}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
-header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{display:flex;align-items:center;gap:10px;font:700 1.1rem var(--display);text-decoration:none;animation:brandIn .7s ease-out both}
-.brand svg{width:34px;height:32px}
-@keyframes brandIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-.btn{display:inline-block;background:var(--lime);color:var(--on-lime);font:700 1rem var(--display);padding:14px 24px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
-.btn:hover{filter:brightness(1.07)}
-.btn.small{padding:9px 18px;font-size:.92rem}
-.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-.hero{padding:36px 22px 52px;display:grid;gap:26px;grid-template-columns:1fr;align-items:center}
-.hero>*{min-width:0}
-.hero .mark{width:96px;height:auto;justify-self:start;order:-1}
-.hero p.lead{font-size:1.2rem;color:var(--muted)}
-.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-@media(max-width:559px){h1{font-size:2.15rem}.hero p.lead{font-size:1.05rem}.cta-row .btn{width:100%;text-align:center}}
-@media(min-width:860px){.hero{grid-template-columns:1.5fr 1fr;padding:64px 22px 80px;gap:40px}.hero .mark{width:100%;order:0;justify-self:center}}
-.mark .pulse{transform-origin:100px 112px;animation:pulse 3.2s ease-in-out 1}
-@keyframes pulse{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.25)}100%{transform:scale(1);opacity:1}}
-@media(prefers-reduced-motion:reduce){.brand,.mark .pulse{animation:none}html{scroll-behavior:auto}}
-.split{display:grid;gap:18px;grid-template-columns:1fr}
-@media(min-width:760px){.split.two{grid-template-columns:1fr 1fr}.split.three{grid-template-columns:repeat(3,1fr)}}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
-.card p{margin:0;color:var(--muted)}
-.leak{border-left:4px solid var(--lime)}
-.band{background:var(--surface);border-block:1px solid var(--line)}
-.table{width:100%;border-collapse:collapse;margin-top:10px}
-.table th,.table td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-.table th{font:500 .95rem var(--display);color:var(--muted)}
-.scroll{overflow-x:auto}
-.say{font-style:italic;color:var(--lime-text);font-size:1.15rem}
-.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:18px}
-.steps li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:14px}
-.steps li::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--lime);color:var(--on-lime);font:700 1.1rem var(--display)}
-.steps h3{margin:0 0 .2em}.steps p{margin:0;color:var(--muted)}
-.audit-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
-.audit-list li{padding-left:30px;position:relative}
-.audit-list li::before{content:"";position:absolute;left:0;top:.45em;width:14px;height:14px;background:var(--lime);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
-.tag{display:inline-block;border:1px solid var(--lime);color:var(--lime-text);border-radius:999px;padding:4px 14px;font:500 .9rem var(--display);margin:0 0 14px}
-form{display:grid;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;max-width:640px}
-label{display:grid;gap:6px;font:500 .95rem var(--display)}
-input,select,textarea{font:400 1rem var(--body);background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:13px 14px;width:100%}
-.hint{font-size:.88rem;color:var(--muted);margin:0}
-#msg{min-height:1.4em;color:var(--lime-text);font-weight:500;margin:0}
-.err{color:#ff6b5e!important}
-.direct{margin-top:22px;max-width:640px}
-.plans{display:grid;gap:18px;grid-template-columns:1fr;margin-top:28px}
-@media(min-width:900px){.plans{grid-template-columns:repeat(3,1fr)}}
-.plan{display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:28px}
-.plan h3{margin:0 0 .3em;color:var(--muted)}
-.price{font:700 clamp(2.2rem,5vw,2.9rem)/1 var(--display);color:var(--lime-text);letter-spacing:-.03em}
-.unit{color:var(--muted);margin:.4em 0 1.2em}
-.plan .audit-list{margin:0 0 1.2em;padding-top:1.2em;border-top:1px solid var(--line)}
-.plan .for{color:var(--muted);font-size:.95rem;margin-top:auto}
-.plan .btn{text-align:center;margin-top:18px}
-.note{margin-top:22px;color:var(--muted)}
-details{border-bottom:1px solid var(--line);padding:18px 0}
-summary{cursor:pointer;font:500 1.12rem var(--display)}
-details p{margin:.8em 0 0;color:var(--muted)}
-footer{padding:40px 0 56px;color:var(--muted);font-size:.92rem;border-top:1px solid var(--line)}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Huzaifa Vayani | Performance Marketer for Fashion &amp; E-commerce Brands</title>
+<meta name="description" content="Independent performance marketer running Meta Ads for fashion and e-commerce brands. WhatsApp lead generation and website advertising with structured testing and honest reporting.">
+<meta name="theme-color" content="#080808">
+<meta property="og:title" content="Huzaifa Vayani | Performance Marketer">
+<meta property="og:description" content="More than clicks. Marketing you can measure.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/logo-512.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="css/style.css">
+<!-- Meta Pixel base code. Add further events (e.g. fbq('track','Contact')) below PageView only after you have set them up and tested them in Events Manager. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','29265335063096485');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=29265335063096485&amp;ev=PageView&amp;noscript=1"></noscript>
 </head>
 <body>
-
-<header>
- <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window,document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
- fbq('init', '29265335063096485'); 
-fbq('track', 'PageView');
-</script>
-<noscript>
- <img height="1" width="1" 
-  src="https://www.facebook.com/tr?id=29265335063096485&ev=PageView
-  &noscript=1"/>
-</noscript>
-  <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="Brand home">
-      <svg viewBox="0 0 200 190" aria-hidden="true" fill="none" stroke="var(--lime)" stroke-width="22" stroke-linecap="round">
-        <path d="M74.7 76.2A33 33 0 1 1 125.3 76.2"/>
-        <path d="M82.5 147.6A33 33 0 1 1 59.2 102.8"/>
-        <path d="M117.5 147.6A33 33 0 1 0 140.8 102.8"/>
-        <path d="M100 90Q100 112 122 112Q100 112 100 134Q100 112 78 112Q100 112 100 90Z" fill="var(--lime)" stroke="none"/>
-      </svg>
-      <span id="brandName">Huzaifa Vayani</span>
-    </a>
-    <a class="btn small" href="#audit">Book the audit</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="#top">Huzaifa Vayani</a>
+    <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <a href="#help">Who I help</a><a href="#services">Services</a><a href="#work">Work</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      <a class="btn small" href="https://wa.me/923072061061" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
   </div>
 </header>
 
-<main id="top">
-<div class="wrap hero">
-  <div>
-    <h1>Your ROAS looks fine. Is the cash showing up?</h1>
-    <p class="lead">I fix Meta and Google ad tracking and match your ad spend to the orders customers actually kept, so Pakistani fashion brands see profit per order, not just a ROAS number.</p>
-    <div class="cta-row">
-      <a class="btn" href="#audit">Request your kept-order audit</a>
-      <a class="btn ghost" href="#leaks">See what I check</a>
-    </div>
-    <p class="muted" style="margin-top:18px;font-size:.95rem">No ROAS promises. I promise what I will measure, and I report it plainly.</p>
-  </div>
-  <svg class="mark" viewBox="0 0 200 190" role="img" aria-label="Three arcs with a four-point star between them" fill="none" stroke="var(--lime)" stroke-width="22" stroke-linecap="round">
-    <path d="M74.7 76.2A33 33 0 1 1 125.3 76.2"/>
-    <path d="M82.5 147.6A33 33 0 1 1 59.2 102.8"/>
-    <path d="M117.5 147.6A33 33 0 1 0 140.8 102.8"/>
-    <path class="pulse" d="M100 90Q100 112 122 112Q100 112 100 134Q100 112 78 112Q100 112 100 90Z" fill="var(--lime)" stroke="none"/>
-  </svg>
-</div>
-
-<!--
-CASE STUDY: delete the comment markers around this block once you have real N.S Fashion numbers, then fill in every [bracket].
-<section id="proof">
+<main id="main">
+<section class="hero" id="top">
   <div class="wrap">
-    <h2>What this looks like in practice</h2>
-    <div class="card" style="margin-top:24px">
-      <p class="tag">N.S Fashion · [city] · [short descriptor]</p>
-      <h3>The problem</h3><p>[One line.]</p>
-      <h3 style="margin-top:1em">What I found</h3>
-      <ul class="audit-list"><li>[Finding 1 with a number]</li><li>[Finding 2 with a number]</li></ul>
-      <h3 style="margin-top:1em">What changed</h3>
-      <ul class="audit-list"><li>[Action 1 and measured result]</li><li>[Action 2 and measured result]</li></ul>
-      <h3 style="margin-top:1em">Result</h3><p>[One number the owner cares about.]</p>
-      <p class="say">“[One-line quote from the owner]” [Name], N.S Fashion</p>
+    <p class="kicker">Huzaifa Vayani, Performance Marketer</p>
+    <h1>More than clicks. Marketing you can measure.</h1>
+    <p class="lead">From WhatsApp enquiries to website purchases, I help fashion and e-commerce businesses make smarter advertising decisions through structured testing, campaign optimisation, and honest reporting.</p>
+    <div class="cta">
+      <a class="btn" href="https://wa.me/923072061061" target="_blank" rel="noopener">Discuss Your Campaign</a>
+      <a class="btn ghost" href="#work">View My Work</a>
     </div>
+    <dl class="hero-stats">
+      <div><dt>N.S Fashion, Aug to Dec 2024</dt><dd>1,197 WhatsApp conversations</dd></div>
+      <div><dt>Average cost per conversation</dt><dd>Rs 9.65</dd></div>
+    </dl>
   </div>
 </section>
--->
 
-<section class="band">
+<section id="help">
   <div class="wrap">
-    <h2>Sale mein orders bohat aate hain. Cash kahan hai?</h2>
-    <p>Eid, Azadi sale, winter weddings, 11.11 and 12.12 bring order spikes. They also bring exchanges, returns and thin margins. Meta only shows the order at checkout. It does not show what happened after the rider left.</p>
-    <div class="scroll">
-    <table class="table">
-      <tr><th>What your Ads Manager says</th><th>What actually happened</th></tr>
-      <tr><td>100 purchases</td><td>Some parcels never delivered (RTO), some came back for size or fit, some orders never reached the Pixel at all</td></tr>
-      <tr><td>Good ROAS in sale week</td><td>Discounted prices, returns and delivery costs can leave very little margin per order</td></tr>
-      <tr><td>Ads are working</td><td>Some ads may still be pushing sizes or designs that sold out</td></tr>
-    </table>
+    <h2>Businesses I help</h2>
+    <div class="grid two">
+      <article class="card"><h3>Fashion brands</h3><p>Clothing, abaya and apparel businesses that sell through WhatsApp conversations and need steadier, better-qualified enquiries.</p></article>
+      <article class="card"><h3>E-commerce stores</h3><p>Online stores on Shopify, WooCommerce and other platforms that want clearer decisions from their paid advertising data.</p></article>
     </div>
   </div>
 </section>
 
-<section id="leaks">
+<section id="services">
   <div class="wrap">
-    <h2>Four leaks I look for in a fashion store</h2>
-    <div class="split two" style="margin-top:28px">
-      <div class="card leak"><h3>Tracking gaps</h3><p>Pixel and CAPI setup, duplicate or missing purchase events, and orders closed in WhatsApp or Instagram DMs that Meta never sees.</p></div>
-      <div class="card leak"><h3>RTO and exchanges, counted separately</h3><p>Undelivered parcels and size or fit exchanges are different problems. I split them by collection, size, city and courier.</p></div>
-      <div class="card leak"><h3>Sale-period margin</h3><p>Contribution margin per campaign after discounts and returns, so a sale that “worked” does not quietly lose money.</p></div>
-      <div class="card leak"><h3>Spend on sold-out stock</h3><p>Ads still running on sizes or designs you no longer have. Catalog ads with inventory sync help stop this.</p></div>
+    <h2>Services</h2>
+    <div class="grid two">
+      <article class="card">
+        <h3>WhatsApp Lead Generation</h3>
+        <p class="tag">Established experience</p>
+        <p>My strongest service. Meta Ads built to start WhatsApp conversations with people who are ready to ask about your products.</p>
+        <ul>
+          <li>Meta Ads campaigns focused on WhatsApp enquiries</li>
+          <li>Campaign setup and management</li>
+          <li>Creative and audience testing</li>
+          <li>Cost-per-conversation optimisation</li>
+          <li>Work to improve enquiry quality</li>
+          <li>Performance analysis and reporting</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Website E-commerce Advertising</h3>
+        <p class="tag alt">Expanding service</p>
+        <p>I am growing this service for businesses that sell through their own website. I will tell you plainly what the data can and cannot show.</p>
+        <ul>
+          <li>Meta Ads for website purchases</li>
+          <li>Shopify and WooCommerce campaigns</li>
+          <li>Product and creative testing</li>
+          <li>Conversion tracking review</li>
+          <li>Purchase funnel analysis</li>
+          <li>Optimisation based on available performance data</li>
+        </ul>
+      </article>
     </div>
+    <p class="cta-line"><a href="https://wa.me/923072061061" target="_blank" rel="noopener">Not sure which fits? Message me on WhatsApp.</a></p>
   </div>
 </section>
 
-<section class="band">
-  <div class="wrap" style="display:grid;gap:36px">
-    <div>
-      <h2>What you get in the audit</h2>
-      <p><strong class="price" style="font-size:1.8rem">Rs2,000</strong> <span class="muted">one-time, one report and one call. Credited toward Tier 2 if we work together.</span></p>
-      <ul class="audit-list">
-        <li>A tracking check: Pixel, Conversions API, purchase events, DM-order leakage</li>
-        <li>A reconciliation of Meta purchases, Shopify orders, delivered orders and kept orders</li>
-        <li>RTO rate and exchange rate by collection, size, city and courier</li>
-        <li>Contribution margin for your last sale period</li>
-        <li>A Q4 plan covering wedding season, 11.11 and 12.12: budget, tests and a margin check for each sale</li>
-      </ul>
-      <p style="margin-top:18px"><strong>Turnaround:</strong> report within 3 working days of receiving your data.</p>
-      <p class="muted">Sale starting in under 2 weeks? Message me first and I will prioritise the sale-week checks.</p>
-      <p class="muted">I will tell you in the first call what data I need, usually Shopify and courier exports and read-only access to Ads Manager.</p>
+<section id="work">
+  <div class="wrap">
+    <h2>Selected work: N.S Fashion</h2>
+    <p class="meta">Fashion / Abaya. Meta Ads. Campaigns across more than one period, shown separately below.</p>
+    <h3 class="sub0">August to December 2024: WhatsApp conversations</h3>
+    <div class="metrics">
+      <div class="metric"><span class="num" data-count="1197" data-format="int">1,197</span><span class="lab">WhatsApp conversations</span></div>
+      <div class="metric"><span class="num" data-count="9.65" data-format="rs">Rs 9.65</span><span class="lab">Average cost per conversation</span></div>
     </div>
-    <div>
-      <h2>How it works</h2>
-      <ol class="steps">
-        <li><div><h3>Send your details</h3><p>Fill the short form below. It opens a WhatsApp message to me.</p></div></li>
-        <li><div><h3>Share your data</h3><p>Order and courier exports plus view-only ad account access. Nothing changes in your account.</p></div></li>
-        <li><div><h3>Get the report and a call</h3><p>I walk you through the numbers and what to fix first, then you decide whether to work together.</p></div></li>
-      </ol>
+    <p class="body-text">The campaign used Meta Ads to generate WhatsApp enquiries for an abaya brand. Both figures are historical campaign figures I can verify.</p>
+
+    <h3 class="sub">All N.S Fashion campaigns shown here</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">Period</th><th scope="col">Objective</th><th scope="col">Results</th><th scope="col">Cost per result</th><th scope="col">Amount spent</th></tr></thead>
+        <tbody>
+          <tr><td>Aug to Dec 2024</td><td>WhatsApp conversations</td><td>1,197</td><td>Rs 9.65</td><td>Not listed</td></tr>
+          <tr><td>May 1 to 31, 2026</td><td>Messaging conversations</td><td>525</td><td>Rs 3.37</td><td>Rs 1,767.81</td></tr>
+          <tr><td>Oct 1 to 23, 2026</td><td>Profile and page visits (traffic)</td><td>2,220</td><td>Rs 0.97</td><td>Rs 2,155.03</td></tr>
+        </tbody>
+      </table>
     </div>
+    <p class="body-text note">These are separate campaigns and periods, so I do not add them together. A visit and a conversation are different results and are not compared.</p>
+
+    <div class="ledger" aria-label="What these figures do and do not show">
+      <div class="col yes">
+        <h3>What these figures show</h3>
+        <ul><li>How many people started a WhatsApp conversation from the ads</li><li>What each conversation cost on average</li></ul>
+      </div>
+      <div class="col no">
+        <h3>What they do not show</h3>
+        <ul><li>Revenue or profit</li><li>ROAS</li><li>Website purchases</li><li>Confirmed delivered orders</li><li>Customer lifetime value</li></ul>
+      </div>
+    </div>
+    <p class="body-text">A conversation is an advertising result, not a sale. I report it as exactly that.</p>
+
+    <!-- To add more evidence: save images in /assets and replace each .ph div with <img src="assets/your-file.jpg" alt="Describe the screenshot" loading="lazy"> -->
+
+    <h3 class="sub">N.S Fashion campaign screenshots</h3>
+    <p class="body-text">Screenshots from Meta Ads Manager for the 2026 campaigns above.</p>
+    <div class="shots">
+      <figure>
+        <img src="assets/sales-campaign-may-2026.jpg" width="1907" height="892" loading="lazy" alt="N.S Fashion Meta Ads Manager performance overview for a messaging campaign, May 2026, showing 525 conversations started, Rs3.37 per conversation and Rs1,767.81 spent">
+        <figcaption><strong>Messaging campaign, May 1 to 31, 2026.</strong> 525 conversations started at Rs3.37 each, with Rs1,767.81 spent. Conversations are advertising results, not sales.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/traffic-campaign-oct-2026.jpg" width="1909" height="897" loading="lazy" alt="N.S Fashion Meta Ads Manager performance overview for a traffic campaign, October 2026, showing 2,220 profile and page visits, Rs0.97 per result and Rs2,155.03 spent">
+        <figcaption><strong>Traffic campaign, Oct 1 to 23, 2026.</strong> 2,220 profile and page visits at Rs0.97 each, with Rs2,155.03 spent. Visits are not enquiries or sales.</figcaption>
+      </figure>
+    </div>
+    <p class="cta-line"><a href="https://wa.me/923072061061" target="_blank" rel="noopener">Want a campaign like this reviewed? Discuss yours.</a></p>
   </div>
 </section>
 
-<section>
+<section id="process">
   <div class="wrap">
-    <h2>Built for founder-led fashion brands</h2>
-    <div class="split three" style="margin-top:28px">
-      <div class="card"><h3>Good fit</h3><p>Shopify store, Instagram-first audience, regular collection drops, ads running for weeks including non-sale periods.</p></div>
-      <div class="card"><h3>Your goals</h3><p>Drops that sell through without heavy discounting, fewer size exchanges, and ad spend that follows your stock.</p></div>
-      <div class="card"><h3>Not a fit</h3><p>If you want a guaranteed ROAS multiple, I am not the right person. Nobody can honestly promise one.</p></div>
-    </div>
-    <p class="say" style="margin-top:28px">“ROAS acha hai par cash nahi aa raha.” If that sounds familiar, start here.</p>
+    <h2>How I work</h2>
+    <ol class="steps">
+      <li><h3>Research</h3><p>Your products, customers, offers and past ad data, before any money is spent.</p></li>
+      <li><h3>Strategy</h3><p>A clear objective, audience plan and budget approach agreed with you.</p></li>
+      <li><h3>Testing</h3><p>Structured tests of creatives and audiences, changing one thing at a time where possible.</p></li>
+      <li><h3>Optimisation</h3><p>Budget moves toward what performs and away from what does not.</p></li>
+      <li><h3>Reporting</h3><p>Honest reports that separate ad metrics from business outcomes.</p></li>
+    </ol>
   </div>
 </section>
 
-<section class="band" id="about">
-  <div class="wrap">
-    <h2>Who you will be working with</h2>
-    <!-- Add your photo here: <img src="your-photo.jpg" alt="Huzaifa Vayani" width="120" height="120" style="border-radius:50%;object-fit:cover"> -->
-    <p>I am Huzaifa. I run Meta and Google ads and fix tracking for Pakistani fashion brands. I focus on kept orders because a purchase in Ads Manager is not the same as cash in your account.</p>
-    <p class="muted">You can see how I work on Instagram: <a href="https://instagram.com/huzaifa.metaads" rel="noopener">@huzaifa.metaads</a></p>
+<section id="about">
+  <div class="wrap narrow">
+    <h2>About me</h2>
+    <p class="body-text">I am an independent performance marketer who runs Meta Ads for fashion and e-commerce businesses. I work directly with you, with no agency layers between you and the person managing your campaigns.</p>
+    <p class="body-text">My approach is simple. Test properly, watch the numbers that matter, and be clear about what advertising data can prove. A cheap conversation is useful only if it leads to real enquiries, so I focus on quality as well as cost.</p>
+    <p class="body-text">I communicate plainly and will not promise results I cannot control.</p>
   </div>
 </section>
 
 <section id="pricing">
   <div class="wrap">
-    <h2>Simple pricing, three ways to start</h2>
-    <p class="muted">Pick the one that matches where your brand is today. Not sure which? Message me and I will tell you.</p>
-    <div class="plans">
-      <article class="plan">
-        <h3>Tier 1: Getting started</h3>
-        <div class="price">Rs8,000</div>
-        <div class="unit">one-time setup fee</div>
-        <ul class="audit-list">
-          <li>Meta ads account setup</li>
-          <li>Google ads account setup</li>
-          <li>Pixel and CAPI tracking setup</li>
-        </ul>
-        <p class="for">Best for brands starting from zero, with no ad account or tracking set up.</p>
-        <a class="btn ghost" href="#audit">Ask about Tier 1</a>
-      </article>
-      <article class="plan">
-        <h3>Tier 2: Ongoing management</h3>
-        <div class="price">Rs17,000</div>
-        <div class="unit">per month</div>
-        <ul class="audit-list">
-          <li>Everything in Tier 1, setup included with no separate Rs8,000 fee</li>
-          <li>Ongoing Meta and Google ads management</li>
-          <li>Weekly reporting with real numbers, in plain language</li>
-          <li>Results judged on weekly reports, not single days</li>
-        </ul>
-        <p class="for">Best for brands already running ads that want someone watching the account every week.</p>
-        <a class="btn" href="#audit">Ask about Tier 2</a>
-      </article>
-      <article class="plan">
-        <h3>Tier 3: Priority</h3>
-        <div class="price">Rs25,000</div>
-        <div class="unit">per month</div>
-        <ul class="audit-list">
-          <li>Everything in Tier 2</li>
-          <li><strong>Monthly courier and RTO performance breakdown, by courier</strong></li>
-          <li>Priority support with replies within 2 hours</li>
-          <li>Ad creative testing: 2–3 variations tested every month, winner reported</li>
-          <li>Results judged on weekly reports, not single days</li>
-        </ul>
-        <p class="for">Best for brands where slow replies and unclear RTO are quietly costing money.</p>
-        <a class="btn ghost" href="#audit">Ask about Tier 3</a>
-      </article>
+    <h2>Pricing</h2>
+    <div class="grid four">
+      <article class="card price"><h3>Campaign Account Audit</h3><p class="amt">Rs 5,000</p><p class="per">one-time</p><p>A paid written review of your Meta Ads account with clear findings.</p></article>
+      <article class="card price"><h3>Meta Ads Setup</h3><p class="amt">Rs 12,000</p><p class="per">one-time</p><p>Campaign structure and setup for your objective.</p></article>
+      <article class="card price"><h3>Meta Ads Management</h3><p class="amt">Rs 25,000</p><p class="per">per month</p><p>Ongoing management, testing, optimisation and reporting.</p></article>
+      <article class="card price"><h3>Expanded Growth Support</h3><p class="amt">Rs 35,000</p><p class="per">per month</p><p>Management with expanded support. Scope is agreed with you.</p></article>
     </div>
-    <p class="note">Ad spend is separate. You pay Meta and Google directly, not me.</p>
+    <ul class="notes">
+      <li>Advertising budget is paid separately by the client.</li>
+      <li>Creative production, major tracking implementations, Google Ads, and courier or order reconciliation are not automatically included.</li>
+      <li>Final scope depends on your business and its requirements.</li>
+    </ul>
+    <div class="card call">
+      <h3>Free 15-minute discovery call</h3>
+      <p>A short conversation to understand your business and see if we are a fit. It is not the paid audit: the discovery call is free and has no written report, while the Rs 5,000 audit is a written review of your account.</p>
+      <a class="btn" href="https://wa.me/923072061061?text=Hi%20Huzaifa%2C%20I%27d%20like%20to%20book%20a%2015-minute%20discovery%20call." target="_blank" rel="noopener">Book the free call</a>
+    </div>
   </div>
 </section>
 
-<section id="audit" class="band">
-  <div class="wrap">
-    <h2>Request your kept-order audit</h2>
-    <p class="muted">Tell me about your store. I reply on WhatsApp, usually within one working day. The kept-order audit is Rs2,000 (credited toward Tier 2), and I confirm payment details before you share any data.</p>
-    <form id="leadForm" novalidate>
-      <label>Your name<input name="name" autocomplete="name" required></label>
-      <label>Brand name<input name="brand" autocomplete="organization" required></label>
-      <label>Website or Instagram link<input name="site" placeholder="yourbrand.com or instagram.com/yourbrand" required></label>
-      <label>Monthly Meta ad spend
-        <select name="spend">
-          <option value="Under Rs100k">Under Rs100k</option>
-          <option value="Rs100k–300k">Rs100k–300k</option>
-          <option value="Rs300k–1M">Rs300k–1M</option>
-          <option value="Over Rs1M">Over Rs1M</option>
-          <option value="Not running ads yet">Not running ads yet</option>
-        </select>
-      </label>
-      <label>Biggest problem right now
-        <select name="problem">
-          <option>Too many returns or exchanges</option>
-          <option>ROAS is good but profit is low</option>
-          <option>Not sure my tracking is correct</option>
-          <option>Ads keep running on sold-out designs</option>
-          <option>Planning Q4 and sale season</option>
-        </select>
-      </label>
-      <label>Which plan are you interested in?
-        <select name="plan">
-          <option>Not sure yet</option>
-          <option>Kept-order audit (Rs2,000, credited toward Tier 2)</option>
-          <option>Tier 1: Getting started (Rs8,000 setup)</option>
-          <option>Tier 2: Ongoing management (Rs17,000/month)</option>
-          <option>Tier 3: Priority (Rs25,000/month)</option>
-        </select>
-      </label>
-      <label>Your WhatsApp number<input name="phone" type="tel" autocomplete="tel" placeholder="03XX XXXXXXX" required></label>
-      <button class="btn" type="submit">Send on WhatsApp</button>
-      <p id="msg" role="status"></p>
-      <p class="hint">Submitting opens WhatsApp with your answers filled in. You press send.</p>
-    </form>
-    <p class="direct muted">Prefer to just chat? <a class="btn ghost small" id="directWa" href="#" target="_blank" rel="noopener">Message me on WhatsApp</a></p>
+<section id="faq">
+  <div class="wrap narrow">
+    <h2>Frequently asked questions</h2>
+    <details><summary>Do you guarantee sales or a return on ad spend?</summary><p>No. Nobody can honestly guarantee that. I control campaign setup, testing and optimisation. Sales also depend on your product, price, offer, website and how enquiries are handled.</p></details>
+    <details><summary>What is a WhatsApp conversation in your reporting?</summary><p>It is a person who started a chat with your business after seeing an ad. It is a lead, not a sale, and I report it that way.</p></details>
+    <details><summary>Do you work with Shopify and WooCommerce stores?</summary><p>Yes. Website advertising is a service I am expanding. I will be clear about what I can do now and what needs extra tracking work.</p></details>
+    <details><summary>Is the ad budget included in your fees?</summary><p>No. You pay the advertising budget to Meta directly. My fees are separate.</p></details>
+    <details><summary>Do you create the ad creatives?</summary><p>Creative production is not automatically included. I advise on creative testing, and we can agree scope if you want more.</p></details>
+    <details><summary>What is the difference between the discovery call and the audit?</summary><p>The 15-minute call is free and is a conversation. The audit costs Rs 5,000 and gives you a written review of your account.</p></details>
+    <details><summary>Do you work as an agency?</summary><p>No. I am an independent marketer, and you work with me directly.</p></details>
   </div>
 </section>
 
-<section>
+<section id="contact" class="contact">
   <div class="wrap">
-    <h2>Questions owners ask</h2>
-    <details><summary>Do you guarantee ROAS?</summary><p>No. ROAS claims are easy to make and hard to verify. I commit to what I measure and report: tracked purchases, kept orders and margin.</p></details>
-    <details><summary>Will you reduce my RTO?</summary><p>Cheap tools already handle COD confirmation calls and risk scores. I focus on connecting ad spend to kept orders, so you can see which campaigns bring buyers who keep their order.</p></details>
-    <details><summary>What access do you need?</summary><p>View-only access to your ad account and your Shopify and courier exports. I do not change anything during the audit.</p></details>
-    <details><summary>How long does the audit take?</summary><p>The report is ready within 3 working days of receiving your data. If a sale is coming up soon, message me first and I will prioritise the sale-week checks.</p></details>
-    <details><summary>Do you also test ad creatives?</summary><p>Yes, on Tier 3. I test 2–3 creative variations every month and report the winner.</p></details>
-    <details><summary>What does the audit cost?</summary><p>The kept-order audit is a one-time Rs2,000. You get the report and a call to walk through it. If you then start Tier 2, the Rs2,000 is credited toward it.</p></details>
-    <details><summary>Is ad spend included in the price?</summary><p>No. Ad spend is separate. You pay Meta and Google directly, not me.</p></details>
-    <details><summary>Which plan should I pick?</summary><p>Starting from zero with no ad account or tracking: Tier 1. Already running ads and want weekly eyes on them: Tier 2. Slow replies and unclear RTO costing you money: Tier 3.</p></details>
+    <h2>Let's talk about your campaign</h2>
+    <p class="lead">Message me on WhatsApp with your business, what you sell and what you want from your ads.</p>
+    <div class="cta">
+      <a class="btn" href="https://wa.me/923072061061" target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn ghost" href="https://instagram.com/huzaifa.metaads" target="_blank" rel="noopener">@huzaifa.metaads on Instagram</a>
+    </div>
   </div>
 </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <span id="footName">Huzaifa Vayani</span> · Meta and Google ads, Pixel and CAPI for fashion brands in Pakistan. Instagram: <a href="https://instagram.com/huzaifa.metaads" rel="noopener">@huzaifa.metaads</a>
-  </div>
-</footer>
-
-<script>
-const WHATSAPP_NUMBER = "923072061061"; // country code + number, digits only
-const BRAND_NAME = "Huzaifa Vayani";
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbzgTWGUyIKD4hWfhFuhlJBvWr_T5pJtDRyaUB2udoNid53DBvUDJ9aLgxaZufmj9ieS/exec";
-document.getElementById("brandName").textContent = BRAND_NAME;
-document.getElementById("footName").textContent = BRAND_NAME;
-document.getElementById("directWa").href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent("Hi, I saw your website and have a question.");
-
-document.getElementById("leadForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  var f = e.target, msg = document.getElementById("msg");
-  var d = {};
-  ["name","brand","site","spend","problem","plan","phone"].forEach(function(k){ d[k] = (f.elements[k].value || "").trim(); });
-  if(!d.name || !d.brand || !d.site || !d.phone){
-    msg.className = "err";
-    msg.textContent = "Please fill in your name, brand, website or Instagram link, and WhatsApp number.";
-    return;
-  }
-  var text = "Hi, I would like the kept-order audit.\n" +
-    "Name: " + d.name + "\nBrand: " + d.brand + "\nSite: " + d.site +
-    "\nMeta spend: " + d.spend + "\nBiggest problem: " + d.problem + "\nPlan: " + d.plan + "\nMy WhatsApp: " + d.phone;
-  msg.className = "";
-  msg.textContent = "Opening WhatsApp. Press send to submit your request.";
-  window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text), "_blank", "noopener");
-});
-</script>
+<footer><div class="wrap"><p>&copy; <span id="yr">2026</span> Huzaifa Vayani. Independent performance marketer.</p></div></footer>
+<script src="js/main.js" defer></script>
 </body>
 </html>
