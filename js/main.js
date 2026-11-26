@@ -31,15 +31,13 @@
   els.forEach(function(el){io.observe(el)});
 })();
 
-// Enquiry form: fires a Pixel "Lead" event for qualified budgets (Rs 30,000+), a custom "LowBudgetEnquiry" event otherwise, then opens WhatsApp with the answers pre-filled.
+// Enquiry form: fires a standard Pixel "Lead" event, then opens WhatsApp with the answers pre-filled.
 // No personal details are sent to the Pixel or stored by this site.
 (function(){
   var form=document.getElementById('enquiry');
   if(!form)return;
   var NUMBER='923072061061';
   function track(name,params){try{if(window.fbq)fbq('track',name,params||{});}catch(e){}}
-  function trackCustom(name,params){try{if(window.fbq)fbq('trackCustom',name,params||{});}catch(e){}}
-  var QUALIFIED=['Rs 30,000 to 75,000','Rs 75,000 to 150,000','Over Rs 150,000'];
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var f=form.elements,bad=false;
@@ -60,8 +58,7 @@
     var link=document.getElementById('f-link');
     link.href=url;
     document.getElementById('f-fallback').hidden=false;
-    var params={content_name:'Enquiry form',budget_range:f.budget.value,business_type:f.type.value,sales_channel:f.where.value};
-    if(QUALIFIED.indexOf(f.budget.value)!==-1){track('Lead',params);}else{trackCustom('LowBudgetEnquiry',params);}
+    track('Lead',{content_name:'Enquiry form'});
     setTimeout(function(){window.location.href=url;},400);
   });
   document.querySelectorAll('[data-track="contact"]').forEach(function(a){
